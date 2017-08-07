@@ -1,0 +1,18 @@
+<?php ?>
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Posit Lookup Table</title>
+<script src="js/positlookup.js"></script>
+</head>
+<body>
+<h2>Posit Lookup Table Generator</h2>
+Posit bit size: <input id="posit" type="number" min="2" max="16">
+Exponential bit size: <input id="expo" type="number" min="0" max="4">
+<input type="submit" value="submit" onclick="return checkPosit(document.getElementById('posit').value, document.getElementById('expo').value);" />
+
+<pre id="output">
+</pre>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<?php ?>
+<!DOCTYPE html>
+<html>
+<head>
+<title>Decimal to Posit Lookup Table (Beta)</title>
+<p>Rounding to nearest exponent (where the difference between 2 neighbouring numbers is in multiple orders of 2) or fraction bit (where the difference between 2 neighbouring numbers is in power of 2) with no overflow and underflow. <br/>[Version: 4 August 2017]</p>
+<script src="js/decimallookupv2.js"></script>
+</head>
+<body>
+<h2>Decimal to Posit Lookup Table Generator (Beta)</h2>
+Decimal: <input id="decimal" type="number" step="any">
+<input type="submit" value="submit" onclick="convertDToP();"/>
+
+<pre id="output">
+</pre>
+</body>
+</html>
