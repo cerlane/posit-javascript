@@ -8,7 +8,7 @@ function positConvert(){
 	max_value = Math.pow(2, posit);
 	half_max = max_value/2;
 	
-	msg="#      Binary                k-value     sign     regime                    exponent     fraction              value   \n";
+	msg="#      Bits                Decoding                k-value     sign     regime                    exponent     fraction               value   \n";
 	for (i=0; i<max_value; i++){
 		msg += i + ": ";
 		binary = dec2bin(i);
@@ -17,7 +17,7 @@ function positConvert(){
 		}
 		no_whitespace = 5 - i.toString().length;
 		msg += addWhitespace(no_whitespace);
-
+		var hw_binary=binary;
 		
 		//msg += binary;
 		var colouredBinary="";
@@ -35,15 +35,17 @@ function positConvert(){
 		for(j=0; j<binary.length; j++){	
 			if (j==0){
 				sign = parseInt(binary.charAt(j));
-				colouredBinary = "<font color='#FF2000'>"+sign+"</font>";
+				var signchar= "+";				
 				if(sign==0){
 					sign = 1;
 				}
 				else if (sign==1){
 					sign = -1;
+					signchar = "-";
 					//Two's complements
 					binary = dec2bin(-i).substring(32-posit,32);					
 				}
+				colouredBinary = "<font color='#FF2000'>"+signchar+"</font>";
 			}
 			else if (j==1){
 				regimesign = parseInt(binary.charAt(j));
@@ -95,6 +97,10 @@ function positConvert(){
 				
 			}
 		}
+
+		msg+=hw_binary;
+
+
 		//To print in colours
 		
 		colouredBinary += "<font color='#CC9933'>"+regimeBits+"</font>";
@@ -117,9 +123,24 @@ function positConvert(){
 			}
 			
 		}
-		msg+=colouredBinary;
+
+		no_whitespace = "Bits".length+16 - binary.length;
+		msg += addWhitespace(no_whitespace);
+		if (i==0){
+			msg += "+"+ binary.substring(1, binary.length);
+		}
+		else if (i==half_max){
+			msg += "-"+ binary.substring(1, binary.length);
+		}
+		else{
+			msg+=colouredBinary;
+		}
 		
-		no_whitespace = "binary".length+16 - binary.length;
+		
+		
+		
+		
+		no_whitespace = "Decoding".length+16 - binary.length;
 		msg += addWhitespace(no_whitespace);
 		k = 0;
 		if (regimesign==0){
@@ -138,10 +159,20 @@ function positConvert(){
 		regime = Math.pow(Math.pow(2, Math.pow(2, expo)), k);
 		no_whitespace = "sign".length + 5 - sign.toString().length;
 		msg += addWhitespace(no_whitespace);
-		msg += regime;
-		
+		if (i==0){
+			msg += "0";
+			no_whitespace = "regime".length + 19;
+		}
+               	else if (i==half_max){
+		       msg += "INF";
+		       no_whitespace = "regime".length + 17;
+	       	}
+		else{
+			msg += regime;
+			no_whitespace = "regime".length + 20 - regime.toString().length;
+		}
 		expo_value = Math.pow(2, expo_bitvalue);
-		no_whitespace = "regime".length + 20 - regime.toString().length;
+		//no_whitespace = "regime".length + 20 - regime.toString().length;
 		msg += addWhitespace(no_whitespace);
 		msg += expo_value;
 
@@ -203,3 +234,4 @@ function checkPosit(val, e_val){
 	else
 		document.getElementById('output').innerHTML = msg;
 }
+
