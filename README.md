@@ -8,4 +8,4 @@ Live version:
 
 Posit Lookup Table: https://posithub.org/widget/lookup 
 
-Conversion: Decimal to Posit: https://posithub.org/widget/lookup
+Conversion: Decimal to Posit: https://posithub.org/widget/plookup
