@@ -218,7 +218,6 @@ function convertDToP(){
 			
 			while (posit.length < ps){
 				posit += "0";
-				coloredPosit+="0";
 			}
 //console.log("<"+ps+", " + es + ">");
 //console.log(posit);
@@ -296,12 +295,8 @@ function convertDToP(){
 				value = calculatePositValue(posit, ps, es);
 		}
 		var error = 0;
-		if (value<decimal){
-			error = (decimal-value)/decimal;
-		}
-		else if (value>decimal){
-			error = (value-decimal)/decimal;
-		}
+		error = Math.abs((decimal-value)/decimal);
+		
 		
 		msg += "Posit<"+ps+","+es+">		" + colouredCodedPosit(posit, es) + "	" ;
 	
@@ -447,7 +442,11 @@ function calculatePositValue(binary, posit, expo){
 }
 
 function colouredCodedPosit(posit, es){
-	var colouredPosit = "<font color='#FF2000'>"+posit.charAt(0)+"</font>";
+	var signchar = "+";	
+	if(posit.charAt(0)=="1"){
+		signchar = "-";
+	}
+	var colouredPosit = "<font color='#FF2000'>"+signchar+"</font>";
 	var isRegime = true;
 	var regime = "";
 	var terminateRegime = "";
@@ -485,4 +484,3 @@ function colouredCodedPosit(posit, es){
 	colouredPosit += "<font color='#CC9933'>"+regime+"</font>" + terminateRegime + expo + fraction;
 	return colouredPosit;
 }
-
