@@ -8,4 +8,4 @@ Live version:
 
 Posit Lookup Table: https://posithub.org/widget/lookup 
 
-Conversion: Decimal to Posit with correct rounding based on posit standard: https://posithub.org/widget/plookup
+Conversion: Decimal to Posit with correct rounding based on posit standard: https://posithub.org/widget/plookup (Please note that this code is only accurate/correct if the given decimal can be represented by a 64-bit double without rounding).
